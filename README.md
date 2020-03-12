@@ -11,6 +11,9 @@ The API will can deployed on a container running on AWS Elastic Beanstalk for si
 ### FIFO Queue
 Since all the tecnology implement will be AWS based SQS FIFO will be used to implement this part. It needs to maintain order in case of multiple requests of the same user be processed on the proper order and also to ensure that older users will be served first.
 
+### Consumers
+The consumers will be developed on Python for the simplicity to receive and work with JSON files, calling aditional API and testing. This Python file will be packed and delivered on and AWS Lambda to avoid the necessity of using a server to run the consumers.
+
 ## Deployment Procedure
 
 You will need an AWS account with:
