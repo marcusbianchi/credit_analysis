@@ -23,5 +23,8 @@ namespace credit_analysis_consumer
         public decimal income { get; set; }
 
         public bool? score_policy_result { get; set; }
+
+        public bool age_policy_result { get; set; }
+
     }
 }
