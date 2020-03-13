@@ -4,7 +4,7 @@ namespace credit_analysis_consumer.Interfaces
 {
     public interface IScorePolicy
     {
-        Task ProcessScorePolicy(LoanRequest loanRequest);
+        Task<Loan> ProcessScorePolicy(Loan loanRequest);
 
     }
 }

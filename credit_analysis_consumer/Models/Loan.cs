@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace credit_analysis_api
+namespace credit_analysis_consumer
 {
     public class Loan
     {
@@ -21,5 +21,7 @@ namespace credit_analysis_api
         public int terms { get; set; }
 
         public decimal income { get; set; }
+
+        public bool? score_policy_result { get; set; }
     }
 }
