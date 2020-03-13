@@ -25,7 +25,14 @@ namespace credit_analysis_consumer
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await _processRequestService.ProcessRequestsFromQueue();
+                try
+                {
+                    await _processRequestService.ProcessRequestsFromQueue();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("Error: {Message}", ex.ToString());
+                }
                 await Task.Delay(1000, stoppingToken);
             }
         }
