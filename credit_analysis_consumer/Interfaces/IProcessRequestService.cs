@@ -6,6 +6,5 @@ namespace credit_analysis_consumer.Interfaces
     {
         Task ProcessRequestsFromQueue();
         Task<(Loan, RequestPolicyResult?)> ProcessLoan(Loan loan);
-        Task UpdateLoanRequest(RequestResult result, RequestPolicyResult? refused_policy, decimal amount, int terms, string id);
     }
 }

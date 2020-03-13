@@ -28,7 +28,7 @@ namespace credit_analysis_consumer.Services
             ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest();
 
             receiveMessageRequest.QueueUrl = _queueURL;
-            receiveMessageRequest.MaxNumberOfMessages = 1;
+            receiveMessageRequest.MaxNumberOfMessages = 10;
             var result = await _amazonSQSClient.ReceiveMessageAsync(receiveMessageRequest);
             var loanList = new List<Loan>();
             foreach (var item in result.Messages)

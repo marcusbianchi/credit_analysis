@@ -9,7 +9,7 @@ public class LoanRequest
 }
 public enum RequestPolicyResult
 {
-    approved, refused
+    age, score, commitment
 }
 public enum RequestResult
 {

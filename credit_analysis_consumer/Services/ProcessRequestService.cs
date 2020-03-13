@@ -1,5 +1,8 @@
+using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using credit_analysis_consumer.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace credit_analysis_consumer.Services
 {
@@ -9,12 +12,18 @@ namespace credit_analysis_consumer.Services
         private readonly IScorePolicy _scorePolicy;
         private readonly ICommitmentPolicy _commitmentPolicy;
         private readonly IQueueService _queueService;
-        public ProcessRequestService(IAgePolicy agePolicy, IScorePolicy scorePolicy, ICommitmentPolicy commitmentPolicy, IQueueService queueService)
+        private readonly ILoanService _loanService;
+        private readonly ILogger<ProcessRequestService> _logger;
+
+        public ProcessRequestService(IAgePolicy agePolicy, IScorePolicy scorePolicy, ICommitmentPolicy commitmentPolicy,
+            IQueueService queueService, ILoanService loanService, ILogger<ProcessRequestService> logger)
         {
             _agePolicy = agePolicy;
             _commitmentPolicy = commitmentPolicy;
             _scorePolicy = scorePolicy;
             _queueService = queueService;
+            _loanService = loanService;
+            _logger = logger;
         }
 
         public async Task<(Loan, RequestPolicyResult?)> ProcessLoan(Loan loan)
@@ -38,14 +47,17 @@ namespace credit_analysis_consumer.Services
             {
                 var (loan, requestPolicyResult) = await ProcessLoan(item);
                 RequestResult result = requestPolicyResult == null ? RequestResult.approved : RequestResult.refused;
-
-                await UpdateLoanRequest(result, requestPolicyResult, (decimal)loan.amount, (int)loan.commitment_terms_result, loan.id);
+                try
+                {
+                    await _loanService.UpdateLoanRequest(result, requestPolicyResult, (decimal)loan.amount, loan.commitment_terms_result, loan.id);
+                }
+                catch (Exception ex)
+                {
+                    var json = JsonSerializer.Serialize(loan);
+                    _logger.LogError("Loan: {Loan}", json);
+                    _logger.LogError("Error: {Message}", ex.ToString());
+                }
             }
-        }
-
-        public Task UpdateLoanRequest(RequestResult result, RequestPolicyResult? refused_policy, decimal amount, int terms, string id)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace credit_analysis_consumer
                 {
                     services.AddHttpClient();
                     services.AddTransient<IAgePolicy, AgePolicy>();
+                    services.AddTransient<ILoanService, LoanService>();
                     services.AddTransient<ICommitmentService, CommitmentService>();
                     services.AddTransient<IScoreService, ScoreService>();
                     services.AddTransient<IQueueService, QueueService>();

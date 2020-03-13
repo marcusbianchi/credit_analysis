@@ -18,7 +18,6 @@ namespace credit_analysis_consumer.Services
             _scoreURL = Environment.GetEnvironmentVariable("SCORE_URL");
             _scoreKey = Environment.GetEnvironmentVariable("SCORE_KEY");
             _clientFactory = clientFactory;
-
         }
         public async Task<int?> GetScore(string cpf)
         {
