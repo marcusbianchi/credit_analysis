@@ -3,16 +3,13 @@ This solution was developed using the 12-Factor APP document(https://12factor.ne
 
 ## Technology Stack
 
-### Credit Analysis API
+### Credit Analysis API and Consumers
 Will be developed in .NetCore that will be implemented inside a Docker Container to enable scalability and availability. This framework was choose because it contains a lot of builtin in funcionalties that expedited the development and testing of APIS, such as strongly typed language, model binding and validation, async processing, automatic documentation generation, dependecy injection, etc. The tests will be implemented using the xUnit framework
 
-The API will can deployed on a container running on AWS Elastic Beanstalk for simplicity, but since it's stateless it can be deployed on any Kubernetes solution.
+The API and Consumers will can deployed on a container running on AWS Elastic Beanstalk for simplicity, but since it's stateless it can be deployed on any Kubernetes solution.
 
 ### FIFO Queue
 Since all the tecnology implement will be AWS based SQS FIFO will be used to implement this part. It needs to maintain order in case of multiple requests of the same user be processed on the proper order and also to ensure that older users will be served first.
-
-### Consumers
-The consumers will be developed on Python for the simplicity to receive and work with JSON files, calling aditional API and testing. This Python file will be packed and delivered on and AWS Lambda to avoid the necessity of using a server to run the consumers.
 
 ## Deployment Procedure
 
@@ -21,6 +18,12 @@ You will need an AWS account with:
 - SQS FIFO Configured
 - AWS ACCESS KEY ID
 - AWS SECRET KEY
+- COMMITMENT URL
+- COMMITMENT KEY
+- SCORE URL
+- SCORE KEY
+- DOCKER
+
 
 ### Credit Analysis API
 This API is contained in a Docker container published on marcusbianchi/credit_analisys_api. To run this container locally use the following command:
@@ -39,6 +42,7 @@ docker run -d \
 ```
 
 The API Swagger UI will be available in http://localhost:80, it will also have all the documentation to use the API.
+
 OBS: This test version is using host network and shouldn't be used in production.
 
 ### Credit Analysis Consumer
@@ -60,5 +64,6 @@ docker run \
 	--name credit_consumer marcusbianchi/credit_analysis_consumer
 ```
 The consumer will start in a container as start to read the QUEUE.
+
 OBS: This test version is using host network and shouldn't be used in production.
 
