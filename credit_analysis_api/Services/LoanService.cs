@@ -26,7 +26,7 @@ public class LoanService : ILoanService
                 result = null,
                 refused_policy = null,
                 amount = null,
-                term = null,
+                terms = null,
             };
             await _DBService.Insert(loanRequest);
             return loan.id;

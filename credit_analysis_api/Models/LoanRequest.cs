@@ -5,7 +5,7 @@ public class LoanRequest
     public RequestResult? result { get; set; }
     public RequestPolicyResult? refused_policy { get; set; }
     public decimal? amount { get; set; }
-    public int? term { get; set; }
+    public int? terms { get; set; }
 }
 public enum RequestPolicyResult
 {
