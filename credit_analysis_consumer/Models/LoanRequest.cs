@@ -11,7 +11,7 @@ namespace credit_analysis_consumer
     }
     public enum RequestPolicyResult
     {
-        approved, refused
+        age, score, commitment
     }
     public enum RequestResult
     {

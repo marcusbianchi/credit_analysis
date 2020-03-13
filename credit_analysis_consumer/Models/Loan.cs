@@ -31,6 +31,7 @@ namespace credit_analysis_consumer
         public bool? commitment_policy_result { get; set; }
 
         public int? commitment_terms_result { get; set; }
+        public double? commitment_terms_value { get; set; }
 
     }
 }

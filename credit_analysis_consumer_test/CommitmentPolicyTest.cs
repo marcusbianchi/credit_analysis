@@ -32,6 +32,8 @@ namespace credit_analysis_consumer_test
             var result = commitmentPolicy.ProcessCommitmentPolicy(loan).Result;
             Assert.True(result.commitment_policy_result);
             Assert.Equal(12, result.commitment_terms_result);
+            Assert.NotEqual(0, result.commitment_terms_value);
+
         }
 
 
@@ -56,6 +58,7 @@ namespace credit_analysis_consumer_test
             var result = commitmentPolicy.ProcessCommitmentPolicy(loan).Result;
             Assert.True(result.commitment_policy_result);
             Assert.Equal(6, result.commitment_terms_result);
+            Assert.NotEqual(0, result.commitment_terms_value);
         }
 
         [Fact]
@@ -78,7 +81,7 @@ namespace credit_analysis_consumer_test
             var commitmentPolicy = new CommitmentPolicy(mockDependency.Object);
             var result = commitmentPolicy.ProcessCommitmentPolicy(loan).Result;
             Assert.False(result.commitment_policy_result);
-            Assert.Equal(null, result.commitment_terms_result);
+            Assert.Null(result.commitment_terms_result);
         }
     }
 }
