@@ -15,7 +15,10 @@ namespace credit_analysis_consumer.Services
         {
             var score = await _scoreService.GetScore(loan.cpf);
             if (score == null)
+            {
                 loan.score_policy_result = null;
+            }
+            loan.score = (int)score;
 
             if (score > 600)
                 loan.score_policy_result = true;

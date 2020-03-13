@@ -24,7 +24,13 @@ namespace credit_analysis_consumer
 
         public bool? score_policy_result { get; set; }
 
+        public int score { get; set; }
+
         public bool age_policy_result { get; set; }
+
+        public bool? commitment_policy_result { get; set; }
+
+        public int? commitment_terms_result { get; set; }
 
     }
 }

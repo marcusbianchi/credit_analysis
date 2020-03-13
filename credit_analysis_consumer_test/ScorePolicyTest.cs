@@ -25,6 +25,7 @@ namespace credit_analysis_consumer_test
             };
             var scorePolicy = new ScorePolicy(mockDependency.Object);
             var result = scorePolicy.ProcessScorePolicy(loan).Result;
+            Assert.NotEqual(0, result.score);
             Assert.True(result.score_policy_result);
         }
 
@@ -42,6 +43,7 @@ namespace credit_analysis_consumer_test
             };
             var scorePolicy = new ScorePolicy(mockDependency.Object);
             var result = scorePolicy.ProcessScorePolicy(loan).Result;
+            Assert.NotEqual(0, result.score);
             Assert.False(result.score_policy_result);
         }
     }

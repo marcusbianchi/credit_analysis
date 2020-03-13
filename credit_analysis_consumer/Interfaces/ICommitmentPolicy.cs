@@ -4,6 +4,6 @@ namespace credit_analysis_consumer.Interfaces
 {
     public interface ICommitmentPolicy
     {
-         Task ProcessCommitmentPolicy(LoanRequest loanRequest);
+        Task<Loan> ProcessCommitmentPolicy(Loan loan);
     }
 }

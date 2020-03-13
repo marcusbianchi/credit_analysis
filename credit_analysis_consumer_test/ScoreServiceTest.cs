@@ -20,3 +20,4 @@ namespace credit_analysis_consumer_test
         }
     }
 }
+
