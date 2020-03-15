@@ -6,7 +6,7 @@ using credit_analysis_consumer.Services;
 
 namespace credit_analysis_consumer_test
 {
-    public class CommitmentSerivceTest
+    public class CommitmentServiceTest
     {
         [Fact]
         public void ShouldReturnDoubleForAnyCPF()

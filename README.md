@@ -14,7 +14,7 @@ Since all the tecnology implement will be AWS based SQS FIFO will be used to imp
 ### Database
 Since all the tecnology implement will be AWS based DynamoDB will be used to implement this part. Since all the data is JSON based and the queries wil be mainly on non-nested jsons and using ID the solution will be able to handle the requests.
 
-## Local Deployment Procedure with Docker
+## Deployment Procedure with Docker
 
 You will need an AWS account with:
 - DynamoDB Table Configured
@@ -29,7 +29,8 @@ You will need an AWS account with:
 
 
 ### Credit Analysis API
-This API is contained in a Docker container published on marcusbianchi/credit_analisys_api. To run this container locally use the following command:
+This API is contai## Technology Stack
+ned in a Docker container published on marcusbianchi/credit_analisys_api. To run this container locally use the following command:
 
 ```shell
 docker run -d \
@@ -70,7 +71,7 @@ The consumer will start in a container as start to read the QUEUE.
 
 OBS: This test version is using host network and shouldn't be used in production.
 
-## Local Deployment Procedure with Docker Compose
+## Deployment Procedure with Docker Compose
 
 You will need an AWS account with:
 - DynamoDB Table Configured
@@ -85,9 +86,28 @@ You will need an AWS account with:
 - DOCKER COMPOSE
 
 Follow the following steps:
-1. Update the file at "./deploy/docker-compose/docker-compose.yml"
+1. Update the file at "./deploy/docker-compose/docker-compose.yml" with the proper variables
 2. Run the Docker Compose command
 ```shell
 cd ./deploy/docker-compose/docker-compose.yml
 docker-compose up -d
 ```
+
+## Testing	
+
+It was used a TDD approach to develop this project to run the test first you need to configure some environment variables that will be used:
+```shell
+export SCORE_URL=xxx
+export SCORE_KEY=xxx
+export COMMITMENT_URL=xxx
+export COMMITMENT_KEY=xxx
+export QUEUE_URL=xxx
+export SQS_SERVICE_URL=https://sqs.us-east-1.amazonaws.com/
+```
+
+After that just run the .netcore test command for each project:
+- Consumer:
+```shell
+dotnet test ./credit_analysis_consumer_test/
+```
+
