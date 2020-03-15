@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+    api:
+        image: marcusbianchi/credit_analisys_api:latest
+        environment:
+            - AWS_ACCESS_KEY_ID=xxx
+            - AWS_SECRET_KEY=xxx
+            - QUEUE_URL=https://sqs.us-east-1.amazonaws.com/066105611759/xxx.fifo
+            - SQS_SERVICE_URL=https://sqs.us-east-1.amazonaws.com/
+            - DYNAMO_SERVICE_URL=https://dynamodb.us-east-1.amazonaws.com/
+            - AWS_DEFAULT_REGION=us-east-1
+            - DYNAMO_TABLE=xxx
+        ports:
+            - 8080:80
+    consumer:
+        image: marcusbianchi/credit_analysis_consumer:latest
+        environment:
+            - AWS_ACCESS_KEY_ID=xxx
+            - AWS_SECRET_KEY=xxxx
+            - SCORE_URL=https://challenge.noverde.name/score
+            - SCORE_KEY=xxx
+            - COMMITMENT_URL=https://challenge.noverde.name/commitment
+            - COMMITMENT_KEY=xxx
+            - QUEUE_URL=https://sqs.us-east-1.amazonaws.com/066105611759/xxx.fifo
+            - SQS_SERVICE_URL=https://sqs.us-east-1.amazonaws.com/
+            - LOAN_URL=http://api:80/loan
+        links:
+            - api
+        depends_on:
+            - api

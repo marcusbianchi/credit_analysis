@@ -1,5 +1,5 @@
 # Credit Analysis Solution
-This solution was developed using the 12-Factor APP document(https://12factor.net/) as base for the architecture. It will be composed as an Rest API for receive and handle the resquests related to Loans, an FIFO Queue to receive the resquests, a group of consumers that will receive from the queue and perform the approving process.
+This solution was developed using the 12-Factor APP document(https://12factor.net/) as base for the architecture. It will be composed as an Rest API for receive and handle the resquests related to Loans, an FIFO Queue to receive the resquests, a group of consumers that will receive from the queue and perform the approving process and a database to store the results.
 
 ## Technology Stack
 
@@ -11,7 +11,10 @@ The API and Consumers will can deployed on a container running on AWS Elastic Be
 ### FIFO Queue
 Since all the tecnology implement will be AWS based SQS FIFO will be used to implement this part. It needs to maintain order in case of multiple requests of the same user be processed on the proper order and also to ensure that older users will be served first.
 
-## Deployment Procedure
+### Database
+Since all the tecnology implement will be AWS based DynamoDB will be used to implement this part. Since all the data is JSON based and the queries wil be mainly on non-nested jsons and using ID the solution will be able to handle the requests.
+
+## Local Deployment Procedure with Docker
 
 You will need an AWS account with:
 - DynamoDB Table Configured
@@ -67,3 +70,24 @@ The consumer will start in a container as start to read the QUEUE.
 
 OBS: This test version is using host network and shouldn't be used in production.
 
+## Local Deployment Procedure with Docker Compose
+
+You will need an AWS account with:
+- DynamoDB Table Configured
+- SQS FIFO Configured
+- AWS ACCESS KEY ID
+- AWS SECRET KEY
+- COMMITMENT URL
+- COMMITMENT KEY
+- SCORE URL
+- SCORE KEY
+- DOCKER
+- DOCKER COMPOSE
+
+Follow the following steps:
+1. Update the file at "./deploy/docker-compose/docker-compose.yml"
+2. Run the Docker Compose command
+```shell
+cd ./deploy/docker-compose/docker-compose.yml
+docker-compose up -d
+```
