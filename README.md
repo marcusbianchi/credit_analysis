@@ -2,7 +2,7 @@
 This solution was developed using the 12-Factor APP document(https://12factor.net/) as base for the architecture. It will be composed as an Rest API for receive and handle the requests related to Loans, an FIFO Queue to receive the requests, a group of consumers that will receive from the queue and perform the approving process and a database to store the results.
 
 
-## Table of ContenA
+## Table of Contents
 - [Credit Analysis Solution](#credit-analysis-solution)
   * [Technology Stack](#technology-stack)
     + [Credit Analysis API and Consumers](#credit-analysis-api-and-consumers)
@@ -54,7 +54,7 @@ docker run -d \
 	--env DYNAMO_SERVICE_URL=https://dynamodb.us-east-1.amazonaws.com/ \
 	--env AWS_DEFAULT_REGION=us-east-1 \
 	--env DYNAMO_TABLE=xxx \
-	--network host \
+	--network host \ Guid.NewGuid().ToString()
 	--name credit_api marcusbianchi/credit_analysis_api
 ```
 
@@ -123,7 +123,7 @@ curl -X POST "http://localhost:8080/loan" -H "accept: */*" -H "Content-Type: app
 
 ## Unit Testing	
 
-It was used a TDD approach to develop this project to run the test first you need to configure some environment variables that will be used:
+It was used a TDD approach to develop this project but to run the test first you need to configure some environment variables that will be used because there are some integration tests as well:
 ```shell
 export SCORE_URL=xxx
 export SCORE_KEY=xxx
@@ -137,6 +137,10 @@ After that just run the .netcore test command for each project:
 - Consumer:
 ```shell
 dotnet test ./credit_analysis_consumer_test/
+```
+- API:
+```shell
+dotnet test ./credit_analysis_api_test/
 ```
 
 ## Future Improvements

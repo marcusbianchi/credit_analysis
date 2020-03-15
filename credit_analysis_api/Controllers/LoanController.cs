@@ -41,7 +41,7 @@ namespace credit_analysis_api.Controllers
                     loan.id = Guid.NewGuid().ToString();
                     var uuid = await _loanService.AddLoanRequestToQueue(loan);
                     if (uuid != "")
-                        return Created("/loan/" + uuid, new { id = uuid });
+                        return Created("/loan/" + uuid, new Loan { id = uuid });
                     return StatusCode(500);
                 }
                 return BadRequest(ModelState);
