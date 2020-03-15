@@ -1,6 +1,20 @@
 # Credit Analysis Solution
 This solution was developed using the 12-Factor APP document(https://12factor.net/) as base for the architecture. It will be composed as an Rest API for receive and handle the resquests related to Loans, an FIFO Queue to receive the resquests, a group of consumers that will receive from the queue and perform the approving process and a database to store the results.
 
+
+## Table of Contents
+- [Credit Analysis Solution](#credit-analysis-solution)
+  * [Technology Stack](#technology-stack)
+    + [Credit Analysis API and Consumers](#credit-analysis-api-and-consumers)
+    + [FIFO Queue](#fifo-queue)
+    + [Database](#database)
+  * [Deployment Procedure with Docker](#deployment-procedure-with-docker)
+    + [Credit Analysis API](#credit-analysis-api)
+    + [Credit Analysis Consumer](#credit-analysis-consumer)
+  * [Deployment Procedure with Docker Compose](#deployment-procedure-with-docker-compose)
+  * [Unit Testing](#unit-testing)
+  * [Future Improvments](#future-improvments)
+
 ## Technology Stack
 
 ### Credit Analysis API and Consumers
@@ -93,7 +107,7 @@ cd ./deploy/docker-compose/docker-compose.yml
 docker-compose up -d
 ```
 
-## Testing	
+## Unit Testing	
 
 It was used a TDD approach to develop this project to run the test first you need to configure some environment variables that will be used:
 ```shell
@@ -111,3 +125,5 @@ After that just run the .netcore test command for each project:
 dotnet test ./credit_analysis_consumer_test/
 ```
 
+## Future Improvments
+- Add Terraform scripts to create and run the infraesturcture
