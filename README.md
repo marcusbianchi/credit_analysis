@@ -2,7 +2,7 @@
 This solution was developed using the 12-Factor APP document(https://12factor.net/) as base for the architecture. It will be composed as an Rest API for receive and handle the resquests related to Loans, an FIFO Queue to receive the resquests, a group of consumers that will receive from the queue and perform the approving process and a database to store the results.
 
 
-## Table of Contents
+## Table of ContenA
 - [Credit Analysis Solution](#credit-analysis-solution)
   * [Technology Stack](#technology-stack)
     + [Credit Analysis API and Consumers](#credit-analysis-api-and-consumers)
@@ -59,9 +59,14 @@ docker run -d \
 	--name credit_api marcusbianchi/credit_analysis_api
 ```
 
-The API Swagger UI will be available in http://localhost:80, it will also have all the documentation to use the API.
+**The API Swagger UI will be available in http://localhost:80, it will also have all the documentation to use the API.**
 
-OBS: This test version is using host network and shouldn't be used in production.
+Sample request:
+```shell
+curl -X POST "http://localhost:5000/loan" -H "accept: */*" -H "Content-Type: application/json" -d "{\"name\":\"Jonny Rocket\",\"cpf\":\"20699988822\",\"birthdate\":\"2000-03-15\",\"amount\":1000,\"terms\":6,\"income\":1000}"
+```
+
+__OBS: This test version is using host network and shouldn't be used in production.__
 
 ### Credit Analysis Consumer
 This Worker is contained in a Docker container published on marcusbianchi/credit_analysis_consumer. To run this container locally use the following command:
@@ -81,9 +86,9 @@ docker run \
     --network host \
 	--name credit_consumer marcusbianchi/credit_analysis_consumer
 ```
-The consumer will start in a container as start to read the QUEUE.
+**The consumer will start in a container and start to process the QUEUE.**
 
-OBS: This test version is using host network and shouldn't be used in production.
+__OBS: This test version is using host network and shouldn't be used in production.__
 
 ## Deployment Procedure with Docker Compose
 
@@ -106,6 +111,16 @@ Follow the following steps:
 cd ./deploy/docker-compose/docker-compose.yml
 docker-compose up -d
 ```
+
+**The API Swagger UI will be available in http://localhost:8080, it will also have all the documentation to use the API.**
+
+Sample request:
+```shell
+curl -X POST "http://localhost:5000/loan" -H "accept: */*" -H "Content-Type: application/json" -d "{\"name\":\"Jonny Rocket\",\"cpf\":\"20699988822\",\"birthdate\":\"2000-03-15\",\"amount\":1000,\"terms\":6,\"income\":1000}"
+```
+
+**The consumer will start in a container and start to process the QUEUE.**
+
 
 ## Unit Testing	
 

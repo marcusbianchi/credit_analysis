@@ -21,11 +21,6 @@ namespace credit_analysis_api.Controllers
             _DBService = DBService;
         }
 
-        [HttpPost]
-        [Produces("application/json")]
-        [Consumes("application/json")]
-
-
         /// <summary>
         /// Create a new Loan Request based on a Loan JSON
         /// </summary>
@@ -34,6 +29,9 @@ namespace credit_analysis_api.Controllers
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the json is invalid</response>       
         /// <response code="500">If there is an internal error</response>   
+        [HttpPost]
+        [Produces("application/json")]
+        [Consumes("application/json")]
         public async Task<ActionResult> Post(Loan loan)
         {
             try
@@ -54,8 +52,6 @@ namespace credit_analysis_api.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        [Produces("application/json")]
         /// <summary>
         /// Get a specific Request status
         /// </summary>
@@ -64,6 +60,8 @@ namespace credit_analysis_api.Controllers
         /// <response code="200">Returns the requested item</response>
         /// <response code="404">If the item was not found</response>       
         /// <response code="500">If there is an internal error</response>
+        [HttpGet("{id}")]
+        [Produces("application/json")]
         public async Task<ActionResult> Get(string id)
         {
             try
@@ -79,9 +77,6 @@ namespace credit_analysis_api.Controllers
                 return StatusCode(500, ex.ToString());
             }
         }
-        [HttpPut("/loan/api/{id}")]
-        [Produces("application/json")]
-        [Consumes("application/json")]
 
         /// <summary>
         /// Used for backend APIs Update request status
@@ -92,6 +87,9 @@ namespace credit_analysis_api.Controllers
         /// <response code="200">Returns the newly updated item</response>
         /// <response code="400">If the json is invalid</response>       
         /// <response code="500">If there is an internal error</response> 
+        [HttpPut("/loan/api/{id}")]
+        [Produces("application/json")]
+        [Consumes("application/json")]
         public async Task<ActionResult> Put(string id, [FromBody]LoanRequest loanRequest)
         {
             try
