@@ -15,8 +15,6 @@ namespace credit_analysis_consumer_test
         public void ShouldApproveTheRequestButWith12Terms()
         {
             var mockDependency = new Mock<ICommitmentService>();
-
-            // set up mock version's method
             mockDependency.Setup(x => x.GetCommitment(It.IsAny<string>()))
                           .ReturnsAsync(0.8);
             var loan = new Loan
@@ -41,8 +39,6 @@ namespace credit_analysis_consumer_test
         public void ShouldApproveTheRequestButWithTheRequiredTerms()
         {
             var mockDependency = new Mock<ICommitmentService>();
-
-            // set up mock version's method
             mockDependency.Setup(x => x.GetCommitment(It.IsAny<string>()))
                           .ReturnsAsync(0.8);
             var loan = new Loan
@@ -65,8 +61,6 @@ namespace credit_analysis_consumer_test
         public void ShouldReproveTheRequest()
         {
             var mockDependency = new Mock<ICommitmentService>();
-
-            // set up mock version's method
             mockDependency.Setup(x => x.GetCommitment(It.IsAny<string>()))
                           .ReturnsAsync(0.8);
             var loan = new Loan

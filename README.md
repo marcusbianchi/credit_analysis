@@ -115,7 +115,7 @@ docker-compose up -d
 
 Sample request:
 ```shell
-curl -X POST "http://localhost:8080/loan" -H "accept: */*" -H "Content-Type: application/json" -d "{\"name\":\"Jonny Rocket\",\"cpf\":\"20699988822\",\"birthdate\":\"2000-03-15\",\"amount\":1000,\"terms\":6,\"income\":1000}"
+curl -X POST "http://localhost:8080/loan" -H "accept: */*" -H "Content-Type: application/json" -d "{\"name\":\"Johnny Rocket\",\"cpf\":\"20699988822\",\"birthdate\":\"2000-03-15\",\"amount\":1000,\"terms\":6,\"income\":1000}"
 ```
 
 **The consumer will start in a container and start to process the QUEUE.**

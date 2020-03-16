@@ -15,8 +15,6 @@ namespace credit_analysis_consumer_test
         public void ShouldReturnTrueForGreaterThan600Score()
         {
             var mockDependency = new Mock<IScoreService>();
-
-            // set up mock version's method
             mockDependency.Setup(x => x.GetScore(It.IsAny<string>()))
                           .ReturnsAsync(900);
             var loan = new Loan
@@ -33,8 +31,6 @@ namespace credit_analysis_consumer_test
         public void ShouldReturnFalseForLeasserThan600Score()
         {
             var mockDependency = new Mock<IScoreService>();
-
-            // set up mock version's method
             mockDependency.Setup(x => x.GetScore(It.IsAny<string>()))
                           .ReturnsAsync(100);
             var loan = new Loan

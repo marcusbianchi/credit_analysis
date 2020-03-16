@@ -10,11 +10,10 @@ namespace credit_analysis_consumer_test
     public class ProcessRequestServiceTest
     {
         [Fact]
-        public void ShoudlReproveByAge()
+        public void ShouldReproveByAge()
         {
             var mockAgeDependency = new Mock<IAgePolicy>();
 
-            // set up mock version's method
             mockAgeDependency.Setup(x => x.ProcessAgePolicy(It.IsAny<Loan>()))
                           .Returns(new Loan
                           {
@@ -40,11 +39,10 @@ namespace credit_analysis_consumer_test
         }
 
         [Fact]
-        public void ShoudlReproveByScore()
+        public void ShouldReproveByScore()
         {
             var mockAgeDependency = new Mock<IAgePolicy>();
 
-            // set up mock version's method
             mockAgeDependency.Setup(x => x.ProcessAgePolicy(It.IsAny<Loan>()))
                           .Returns(new Loan
                           {
@@ -53,7 +51,6 @@ namespace credit_analysis_consumer_test
                           );
             var mockScoreDependency = new Mock<IScorePolicy>();
 
-            // set up mock version's method
             mockScoreDependency.Setup(x => x.ProcessScorePolicy(It.IsAny<Loan>()))
                           .ReturnsAsync(new Loan
                           {
@@ -80,11 +77,10 @@ namespace credit_analysis_consumer_test
         }
 
         [Fact]
-        public void ShoudlReproveByCommitment()
+        public void ShouldReproveByCommitment()
         {
             var mockAgeDependency = new Mock<IAgePolicy>();
 
-            // set up mock version's method
             mockAgeDependency.Setup(x => x.ProcessAgePolicy(It.IsAny<Loan>()))
                           .Returns(new Loan
                           {
@@ -92,8 +88,6 @@ namespace credit_analysis_consumer_test
                           }
                           );
             var mockScoreDependency = new Mock<IScorePolicy>();
-
-            // set up mock version's method
             mockScoreDependency.Setup(x => x.ProcessScorePolicy(It.IsAny<Loan>()))
                           .ReturnsAsync(new Loan
                           {
@@ -122,17 +116,16 @@ namespace credit_analysis_consumer_test
 
             var (loan, requestPolicyResult) = processRequestService.ProcessLoan(new Loan()).Result;
             Assert.Equal(RequestPolicyResult.commitment, requestPolicyResult);
-            Assert.Equal(loan.commitment_terms_result, 12);
-            Assert.Equal(loan.commitment_terms_value, 500);
+            Assert.Equal(12, loan.commitment_terms_result);
+            Assert.Equal(500,loan.commitment_terms_value);
 
         }
 
         [Fact]
-        public void ShoudlApprove()
+        public void ShouldApprove()
         {
             var mockAgeDependency = new Mock<IAgePolicy>();
 
-            // set up mock version's method
             mockAgeDependency.Setup(x => x.ProcessAgePolicy(It.IsAny<Loan>()))
                           .Returns(new Loan
                           {
@@ -141,7 +134,6 @@ namespace credit_analysis_consumer_test
                           );
             var mockScoreDependency = new Mock<IScorePolicy>();
 
-            // set up mock version's method
             mockScoreDependency.Setup(x => x.ProcessScorePolicy(It.IsAny<Loan>()))
                           .ReturnsAsync(new Loan
                           {

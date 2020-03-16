@@ -12,7 +12,6 @@ namespace credit_analysis_consumer_test
         public void ShouldReturnIntForAnyCPF()
         {
             var serviceProvider = new ServiceCollection().AddHttpClient().BuildServiceProvider();
-
             var httpClientFactory = serviceProvider.GetService<IHttpClientFactory>();
             var scoreService = new ScoreService(httpClientFactory);
             var result = scoreService.GetScore("teste").Result;

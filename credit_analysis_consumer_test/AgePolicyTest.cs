@@ -27,7 +27,7 @@ namespace credit_analysis_consumer_test
         }
 
         [Fact]
-        public void ShouldReturnTrueIfAgeUnderl18()
+        public void ShouldReturnTrueIfAgeUnder18()
         {
             var loan = new Loan
             {
