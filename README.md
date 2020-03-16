@@ -20,7 +20,9 @@ This solution was developed using the 12-Factor APP document(https://12factor.ne
 ### Credit Analysis API and Consumers
 Will be developed in .NetCore that will be implemented inside a Docker Container to enable scalability and availability. This framework was choose because it contains a lot of builtin in functionalities that expedited the development and testing of APIS, such as strongly typed language, model binding and validation, async processing, automatic documentation generation, dependency injection, etc. The tests will be implemented using the xUnit framework
 
-The API and Consumers will can deployed on a container running on AWS Elastic Beanstalk for simplicity, but since it's stateless it can be deployed on any Kubernetes solution.
+The API and Consumers will can deployed on a container for simplicity, but since it's stateless it can be deployed on any Kubernetes solution.
+
+The code was developed using SOLID Principles, it mainly uses Dependency Injection to link the implementation with the interfaces. 
 
 ### FIFO Queue
 Since all the technology implement will be AWS based SQS FIFO will be used to implement this part. It needs to maintain order in case of multiple requests of the same user be processed on the proper order and also to ensure that older users will be served first.
