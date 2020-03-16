@@ -5,6 +5,9 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using credit_analysis_api;
 
+/// <summary>
+/// DBService implement for DynamoDB
+/// </summary>
 public class DynamoDBService : IDBService
 {
     private readonly Table _table;

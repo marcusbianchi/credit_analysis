@@ -121,7 +121,7 @@ curl -X POST "http://localhost:8080/loan" -H "accept: */*" -H "Content-Type: app
 **The consumer will start in a container and start to process the QUEUE.**
 
 
-## Unit Testing	
+## Testing	
 
 It was used a TDD approach to develop this project but to run the test first you need to configure some environment variables that will be used because there are some integration tests as well:
 ```shell

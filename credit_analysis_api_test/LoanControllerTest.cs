@@ -16,8 +16,6 @@ namespace credit_analysis_api_test
         {
 
             var mockLoanDependency = new Mock<ILoanService>();
-
-            // set up mock version's method
             mockLoanDependency.Setup(x => x.AddLoanRequestToQueue(It.IsAny<Loan>()))
                           .ReturnsAsync(Guid.NewGuid().ToString());
             var mockDbService = new Mock<IDBService>();
@@ -47,7 +45,6 @@ namespace credit_analysis_api_test
 
             var mockDbService = new Mock<IDBService>();
             var id = Guid.NewGuid().ToString();
-            // set up mock version's method
             mockDbService.Setup(x => x.Read(It.IsAny<string>()))
                           .ReturnsAsync(new LoanRequest
                           {

@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Amazon.SQS;
 using Amazon.SQS.Model;
 
+/// <summary>
+/// Queue Service for AWS SQS
+/// </summary>
 public class SQSService : IQueueService
 {
     private readonly AmazonSQSClient _amazonSQSClient;
